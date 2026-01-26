@@ -29,5 +29,39 @@
 // Follow up: Could you find an algorithm that runs in O(m + n) time?
 
 public class MinimumWindowSubstring {
+
+    public static void main(String[] args) {
+        System.out.println(minWindow("ADOBECODEBANC", "ABC"));
+    }
+
+    // Initial solution
+    
+    public static String minWindow(String s, String t) {
+        int start = 0;
+        int length = t.length();
+        boolean substring = false;
+
+        while (!substring) {
+            if (start + length > s.length()) {
+                start = 0;
+                length++;
+            }
+            if (!hasSubstring(s.substring(start, start+length), t)) {
+                start++;
+            } else {
+                substring = true;
+            }
+        }
+        return s.substring(start, start+length);
+    }
+
+    public static boolean hasSubstring(String s, String t) {
+        for (int i = 0; i < t.length(); i++) {
+            if (!s.contains(t.substring(i, i+1))) {
+                return false;
+            }
+        }
+        return true;
+    }
     
 }
