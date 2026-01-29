@@ -16,6 +16,23 @@
 // nums[i] is either 0 or 1.
 
 
+// Was able to finish this very quickly. Took two tries. The first try didn't use the else, which lowered the time complexity slightly.
+
 public class MaxConsecutiveOnes {
-    
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int consec = 0;
+        int largestConsec = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                consec++;
+            } else if (nums[i] == 0 ) {
+                consec = 0;
+            }
+            if (consec > largestConsec) {
+                largestConsec = consec;
+            }
+        }
+        return largestConsec;
+    }
 }
